@@ -17,6 +17,7 @@ window.onload = () => {
     renderTask(arr); // Pass the array to the render function
   }
   allButton.style.backgroundColor = "#fff";
+  noTask.textContent = "You have no task";
 };
 
 // Add task on button click
