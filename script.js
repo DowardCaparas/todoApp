@@ -17,6 +17,10 @@ window.onload = () => {
     renderTask(arr); // Pass the array to the render function
   }
   allButton.style.backgroundColor = "#fff";
+
+  arr.length > 0
+  ? (noTask.textContent = "")
+  : (noTask.textContent = "You have no task");
 };
 
 // Add task on button click
@@ -35,9 +39,6 @@ addTask.addEventListener("click", () => {
 // Function to render tasks from the array
 function renderTask(tasks) {
   output.textContent = ""; // Clear the previous tasks
-  tasks.length > 0
-    ? (noTask.textContent = "")
-    : (noTask.textContent = "You have no task");
 
   tasks.forEach((item, index) => {
     // task container
