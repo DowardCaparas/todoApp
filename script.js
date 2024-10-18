@@ -17,10 +17,6 @@ window.onload = () => {
     renderTask(arr); // Pass the array to the render function
   }
   allButton.style.backgroundColor = "#fff";
-
-  arr.length > 0
-  ? (noTask.textContent = "")
-  : (noTask.textContent = "You have no task");
 };
 
 // Add task on button click
@@ -90,6 +86,10 @@ function renderTask(tasks) {
 
     output.appendChild(taskElement);
   });
+
+  tasks.length > 0
+    ? (noTask.textContent = "")
+    : (noTask.textContent = "You have no task");
 }
 
 // Display all tasks
@@ -105,7 +105,7 @@ ongoingButton.addEventListener("click", () => {
   allButton.style.backgroundColor = "";
   ongoingButton.style.backgroundColor = "#fff";
   doneTaskButton.style.backgroundColor = "";
-  const ongoingTasks = arr.filter(task => !task.isChecked);
+  const ongoingTasks = arr.filter((task) => !task.isChecked);
   renderTask(ongoingTasks);
 });
 
@@ -114,8 +114,6 @@ doneTaskButton.addEventListener("click", () => {
   allButton.style.backgroundColor = "";
   ongoingButton.style.backgroundColor = "";
   doneTaskButton.style.backgroundColor = "#fff";
-  const doneTasks = arr.filter(task => task.isChecked); // Filter tasks to show only done ones
+  const doneTasks = arr.filter((task) => task.isChecked); // Filter tasks to show only done ones
   renderTask(doneTasks); // Render only the done tasks
 });
-
-
