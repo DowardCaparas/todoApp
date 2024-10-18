@@ -13,7 +13,7 @@ body, html {
 .top_text {
     text-align: center;
     margin-bottom: 20px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #fff;
 }
 
@@ -36,7 +36,7 @@ body, html {
 
 .input_text {
     width: 100%;
-    padding: 5px;
+    padding: 15px;
     border: none;
     font-size: 1rem;
 }
@@ -45,10 +45,6 @@ body, html {
     display: flex;
     gap: 5px;
     margin-bottom: 10px;
-}
-
-#addTask {
-    padding: 15px;
 }
 
 .main_container {
@@ -93,7 +89,12 @@ body, html {
     color: #000;
 }
 
-#addTask, .deleteTask {
+#addTask {
+    font-size: 2rem;
+    padding: 10px 20px;
+}
+
+.deleteTask {
     font-size: 1.5rem;
     padding: 3px 12px;
 }

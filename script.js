@@ -29,13 +29,16 @@ addTask.addEventListener("click", (event) => {
     // Store task with unchecked checkbox initially
     arr.push({ text: inputValue, isChecked: false, bgColor: "" });
     localStorage.setItem("tasks", JSON.stringify(arr)); // Store the updated array in localStorage
-    renderTask(arr, true); // Pass the array to the render function and show controls
+    renderTask(arr); // Pass the array to the render function and show controls
     input.value = "";
   }
 });
 
+// State mangement for task filter
+let state = "all";
+
 // Function to render tasks from the array
-function renderTask(tasks, showControls) {
+function renderTask(tasks) {
   output.textContent = ""; // Clear the previous tasks
 
   tasks.forEach((item, index) => {
@@ -47,7 +50,7 @@ function renderTask(tasks, showControls) {
     const taskText = document.createElement("span");
     taskText.textContent = item.text;
 
-    if (showControls) {
+    if (state === "all") {
       // Checkbox
       const checkBox = document.createElement("input");
       checkBox.type = "checkbox";
@@ -99,29 +102,30 @@ function renderTask(tasks, showControls) {
     : (noTask.textContent = "You have no task");
 }
 
-
 // Display all tasks
 allButton.addEventListener("click", () => {
-  panelButtonFunction(allButton, pendingButton, doneTaskButton, "#fff");
-  renderTask(arr, true); // Show tasks with controls
+  panelButtonFunction("all", allButton, pendingButton, doneTaskButton, "#fff");
+  renderTask(arr); // Show tasks with controls
 });
 
 // Display pending tasks
 pendingButton.addEventListener("click", () => {
-  panelButtonFunction(pendingButton, allButton, doneTaskButton, "#fff");
+  panelButtonFunction("pending", pendingButton, allButton, doneTaskButton, "#fff");
   const pendingTasks = arr.filter((task) => !task.isChecked);
-  renderTask(pendingTasks, false); // Show tasks without controls
+  renderTask(pendingTasks); // Show tasks without controls
 });
 
 // Display done tasks when the button is clicked
 doneTaskButton.addEventListener("click", () => {
-  panelButtonFunction(doneTaskButton, allButton, pendingButton, "#fff");
+  panelButtonFunction("done", doneTaskButton, allButton, pendingButton, "#fff");
   const doneTasks = arr.filter((task) => task.isChecked);
-  renderTask(doneTasks, false); // Show tasks without controls
+  renderTask(doneTasks); // Show tasks without controls
 });
 
 // Function to handle button panel style changes
-const panelButtonFunction = (activeButton, inactiveButton1, inactiveButton2, bgColor) => {
+const panelButtonFunction = (stateHandler, activeButton, inactiveButton1, inactiveButton2, bgColor) => {
+  // update the state
+  state = stateHandler;
   activeButton.style.backgroundColor = bgColor;
   inactiveButton1.style.backgroundColor = "";
   inactiveButton2.style.backgroundColor = "";
